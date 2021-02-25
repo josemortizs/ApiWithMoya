@@ -6,11 +6,23 @@
 //
 
 import SwiftUI
+import Moya
 
 struct ContentView: View {
+    
+    @State var goToMarvelCharacterView: Bool = false
+        
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView(content: {
+            NavigationLink(
+                destination: MarvelCharactersView(),
+                isActive: self.$goToMarvelCharacterView,
+                label: {
+                    Text("Show Marvel Characters...")
+                })
+        }).onAppear{
+            self.goToMarvelCharacterView = true
+        }
     }
 }
 
